@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">NY Times</string>
+    <string name="no_internet">No internet connection</string>
+    <string name="server_error">Server error</string>
+    <string name="unknown_error">Unknown error happened please try again</string>
+    <string name="no_more_news">No more images</string>
+    <string name="error">Error</string>
+</resources>
