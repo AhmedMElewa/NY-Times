@@ -62,7 +62,7 @@ fun NewsDetailsScreen(
         when {
             state.isLoading -> LoadingAnimation(circleSize = 15.dp, spaceBetween = 5.dp)
             state.error != null -> Text(
-                text = state.error ?: stringResource(R.string.error)
+                text = state.error?.let { stringResource(it) } ?: stringResource(R.string.error)
             )
 
             else -> Column(Modifier.padding(paddingValues)) {

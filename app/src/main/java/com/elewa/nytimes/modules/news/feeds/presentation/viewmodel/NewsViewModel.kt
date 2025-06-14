@@ -27,7 +27,7 @@ import javax.inject.Inject
 @HiltViewModel
 class NewsViewModel @Inject constructor(
     private val getNewsListUseCase: GetNewsListUseCase
-): ViewModel() {
+) : ViewModel() {
 
     private val _state = MutableStateFlow(NewsViewState())
     val state: StateFlow<NewsViewState> = _state.asStateFlow()
@@ -52,10 +52,16 @@ class NewsViewModel @Inject constructor(
 
             result
                 .catch { throwable ->
-                    _state.update { it.copy(isLoading = false, error = throwable.message) }
                     throwable.handleError()
+                    _state.update {
+                        it.copy(
+                            isLoading = false,
+                            error = throwable.getErrorMessage()
+                        )
+                    }
+
                 }
-                .collect {  newsList ->
+                .collect { newsList ->
                     _state.update { it.copy(isLoading = false, news = newsList) }
 
                 }
@@ -69,12 +75,16 @@ class NewsViewModel @Inject constructor(
     }
 
     private fun Throwable.handleError() {
-        when (this@handleError) {
-            is NetworkException -> updateError(R.string.no_internet)
-            is ServerException -> updateError(R.string.server_error)
-            is UnknownException -> updateError(R.string.unknown_error)
-            is IOException -> updateError(R.string.no_internet)
-            else -> updateError(R.string.unknown_error)
+        updateError(this.getErrorMessage())
+    }
+
+    private fun Throwable.getErrorMessage(): Int {
+        return when (this@getErrorMessage) {
+            is NetworkException -> R.string.no_internet
+            is ServerException -> R.string.server_error
+            is UnknownException -> R.string.unknown_error
+            is IOException -> R.string.no_internet
+            else -> R.string.unknown_error
         }
     }
 }

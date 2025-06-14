@@ -80,7 +80,7 @@ fun NewsListScreen(
             when {
                 newsListState.isLoading -> LoadingAnimation(circleSize = 15.dp, spaceBetween = 5.dp)
                 newsListState.error != null -> Text(
-                    text = newsListState.error ?: stringResource(R.string.error)
+                    text =  newsListState.error?.let { stringResource(it) } ?: stringResource(R.string.error)
                 )
 
                 else -> NewsList(
