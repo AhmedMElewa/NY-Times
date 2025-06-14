@@ -56,12 +56,12 @@ android {
         create("dTesting") {
             //flavor configurations here
             buildConfigField("String", "API_BASE_URL", "\"https://api.nytimes.com/svc/\"")
-            buildConfigField("String", "API_KEY", "\"xIh5bs4MqdKy8s0qSvUxEiJVZjvym2pI\"")
+            buildConfigField("String", "API_KEY", "\"\"")
         }
         create("prod") {
             //flavor configurations here
             buildConfigField("String", "API_BASE_URL", "\"https://api.nytimes.com/svc/\"")
-            buildConfigField("String", "API_KEY", "\"xIh5bs4MqdKy8s0qSvUxEiJVZjvym2pI\"")
+            buildConfigField("String", "API_KEY", "\"\"")
         }
     }
 }
