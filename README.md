@@ -21,3 +21,10 @@ You can download the final apk [here](https://drive.google.com/file/d/1QbZROgpFv
 * Architecture
     * Clean Architecture
     * MVI
+#### Installation
+* 1- Clone this repository and import into **Android Studio**
+   ```bash
+   git clone git@github.com:AhmedMElewa/NY-Times.git
+   ```
+* 2- update API_KEY in gradel with your key you can get your from here
+   https://developer.nytimes.com/get-started
