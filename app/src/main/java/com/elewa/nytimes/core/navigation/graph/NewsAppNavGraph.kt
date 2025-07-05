@@ -16,7 +16,7 @@ import com.elewa.nytimes.modules.news.feeds.presentation.ui.screen.NewsListScree
 import com.elewa.nytimes.modules.news.feeds.presentation.viewmodel.NewsViewModel
 
 
-fun NavGraphBuilder.marvelAppNav(navController: NavController) {
+fun NavGraphBuilder.NyAppNav(navController: NavController) {
     navigation(
         startDestination = Screen.NewsList.route,
         route = News_GRAPH_ROUTE
