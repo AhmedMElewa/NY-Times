@@ -3,6 +3,7 @@ package com.elewa.nytimes.modules.news.details.presentation.ui
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
@@ -66,57 +67,54 @@ fun NewsDetailsScreen(
             )
 
             else -> Column(Modifier.padding(paddingValues)) {
-                LazyColumn(Modifier.weight(1f)) {
-                    item {
-                        AsyncImage(
-                            model =
-                            ImageRequest.Builder(LocalContext.current)
-                                .data("${state.selectedNews?.previewUrl}")
-                                .crossfade(true)
-                                .placeholder(R.drawable.img_placeholder)
-                                .build(),
-                            contentDescription = state.selectedNews?.title,
-                            modifier = Modifier.fillMaxSize(),
-                            contentScale = ContentScale.Crop
+                AsyncImage(
+                    model =
+                    ImageRequest.Builder(LocalContext.current)
+                        .data("${state.selectedNews?.previewUrl}")
+                        .crossfade(true)
+                        .placeholder(R.drawable.img_placeholder)
+                        .build(),
+                    contentDescription = state.selectedNews?.title,
+                    modifier = Modifier.fillMaxWidth().height(350.dp),
+                    contentScale = ContentScale.Crop
 
-                        )
-                        Text(
-                            text = state.selectedNews?.publishedDate?:"",
-                            style = TextStyle(
-                                fontSize = 12.sp,
-                                fontWeight = FontWeight.Normal
+                )
+                Text(
+                    text = state.selectedNews?.publishedDate?:"",
+                    style = TextStyle(
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Normal
 
-                            ),
-                            textAlign = TextAlign.End,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(10.dp),
-                        )
-                        Text(
-                            text = state.selectedNews?.title?:"",
-                            style = TextStyle(
-                                fontSize = 35.sp,
-                                fontWeight = FontWeight.Bold
+                    ),
+                    textAlign = TextAlign.End,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(10.dp),
+                )
+                Text(
+                    text = state.selectedNews?.title?:"",
+                    style = TextStyle(
+                        fontSize = 35.sp,
+                        fontWeight = FontWeight.Bold
 
-                            ),
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(10.dp),
-                        )
-                    }
+                    ),
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(10.dp),
+                )
 
-                    state.selectedNews?.description?.let {
-                        item {
-                            Text(
-                                modifier = Modifier.padding(12.dp),
-                                text = state.selectedNews?.description?:"",
-                                color = MaterialTheme.colorScheme.onSurface,
-                            )
+                state.selectedNews?.description?.let {
 
-                        }
-                    }
+                    Text(
+                        modifier = Modifier.padding(12.dp),
+                        text = state.selectedNews?.description?:"",
+                        color = MaterialTheme.colorScheme.onSurface,
+                    )
+
+
                 }
+
             }
         }
 
