@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
@@ -66,7 +68,7 @@ fun NewsDetailsScreen(
                 text = state.error?.let { stringResource(it) } ?: stringResource(R.string.error)
             )
 
-            else -> Column(Modifier.padding(paddingValues)) {
+            else -> Column(Modifier.padding(paddingValues).verticalScroll(rememberScrollState())) {
                 AsyncImage(
                     model =
                     ImageRequest.Builder(LocalContext.current)
@@ -75,7 +77,7 @@ fun NewsDetailsScreen(
                         .placeholder(R.drawable.img_placeholder)
                         .build(),
                     contentDescription = state.selectedNews?.title,
-                    modifier = Modifier.fillMaxWidth().height(350.dp),
+                    modifier = Modifier.fillMaxWidth().height(400.dp),
                     contentScale = ContentScale.Crop
 
                 )
